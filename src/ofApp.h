@@ -21,7 +21,7 @@ class ofApp : public ofBaseApp{
     
         equalizer* myEqualizer;
         
-        bool peakingFilterOn=false;
+        bool equalizerOn=false;
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -34,5 +34,8 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+    
+    private:
+        ofImage backgroundImg;
 		
 };
