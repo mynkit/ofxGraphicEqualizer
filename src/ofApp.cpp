@@ -59,6 +59,13 @@ void ofApp::draw(){
     ofDrawBitmapString(" 0", 120, 255);
     ofDrawBitmapString("-6", 120, 275);
     ofDrawBitmapString("-12", 120, 295);
+    ofDrawBitmapString("100", 154, 190);
+    ofDrawBitmapString("200", 194, 190);
+    ofDrawBitmapString("400", 234, 190);
+    ofDrawBitmapString("800", 274, 190);
+    ofDrawBitmapString("1600", 310, 190);
+    ofDrawBitmapString("3200", 350, 190);
+    ofDrawBitmapString("6400", 390, 190);
     //
     ofDrawLine(173, 210, 197, 210);
     ofDrawLine(173, 230, 197, 230);
