@@ -8,6 +8,15 @@ class ofApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
+        void exit();
+        // audio setting
+        void audioIn(ofSoundBuffer &buffer);
+        void audioOut(ofSoundBuffer &buffer);
+        ofSoundStream sound_stream;
+    
+        int bufferSize;
+        int sampleRate;
+        vector<float> inputBuffer;
 
 		void keyPressed(int key);
 		void keyReleased(int key);
