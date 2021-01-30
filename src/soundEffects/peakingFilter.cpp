@@ -8,7 +8,7 @@
 #include "soundEffects/peakingFilter.hpp"
 
 peakingFilter::peakingFilter(int sampleRate, int frequency, float bw, float gain) {
-    // frequency: イコライジングしたい周波数(Hz)
+    // frequency: 中心周波数(Hz)
     // bw:  ピークの幅
     // gain: 増幅(dB)
 

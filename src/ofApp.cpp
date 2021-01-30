@@ -17,8 +17,8 @@ void ofApp::setup(){
     settings.numInputChannels=1;
     settings.bufferSize = bufferSize;
     sound_stream.setup(settings);
-    
-    myPeakingFilter = new peakingFilter(sampleRate, 800, 0.3, 5.);
+
+    myEqualizer = new equalizer(sampleRate);
     
 }
 
@@ -49,7 +49,7 @@ void ofApp::audioOut(ofSoundBuffer &buffer){
         const int channels = buffer.getNumChannels();
         float currentSample = inputBuffer[i];
         if (peakingFilterOn) {
-            currentSample = myPeakingFilter->effect(currentSample);
+            currentSample = myEqualizer->effect(currentSample);
         }
         buffer[i*channels+0] = currentSample;
         buffer[i*channels+1] = currentSample;
