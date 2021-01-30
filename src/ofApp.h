@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "soundEffects/equalizer.hpp"
 
 class ofApp : public ofBaseApp{
 
