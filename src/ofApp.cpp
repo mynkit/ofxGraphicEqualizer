@@ -17,6 +17,9 @@ void ofApp::setup(){
     settings.numInputChannels=1;
     settings.bufferSize = bufferSize;
     sound_stream.setup(settings);
+    
+    myPeakingFilter = new peakingFilter(sampleRate, 800, 0.3, 5.);
+    
 }
 
 //--------------------------------------------------------------
@@ -45,6 +48,9 @@ void ofApp::audioOut(ofSoundBuffer &buffer){
     for(int i = 0; i < frames; i++){
         const int channels = buffer.getNumChannels();
         float currentSample = inputBuffer[i];
+        if (peakingFilterOn) {
+            currentSample = myPeakingFilter->effect(currentSample);
+        }
         buffer[i*channels+0] = currentSample;
         buffer[i*channels+1] = currentSample;
     }
@@ -52,7 +58,14 @@ void ofApp::audioOut(ofSoundBuffer &buffer){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    switch (key) {
+    case 'p':
+        if (peakingFilterOn) {
+            peakingFilterOn = false;
+        } else {
+            peakingFilterOn = true;
+        }
+    }
 }
 
 //--------------------------------------------------------------

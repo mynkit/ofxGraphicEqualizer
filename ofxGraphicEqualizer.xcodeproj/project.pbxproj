@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		60FE3F0525C5535C00EF6EFA /* equalizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60FE3F0325C5535C00EF6EFA /* equalizer.cpp */; };
+		60FE3F0825C5635D00EF6EFA /* peakingFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 60FE3F0625C5635D00EF6EFA /* peakingFilter.cpp */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,8 @@
 /* Begin PBXFileReference section */
 		60FE3F0325C5535C00EF6EFA /* equalizer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = equalizer.cpp; sourceTree = "<group>"; };
 		60FE3F0425C5535C00EF6EFA /* equalizer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = equalizer.hpp; sourceTree = "<group>"; };
+		60FE3F0625C5635D00EF6EFA /* peakingFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = peakingFilter.cpp; sourceTree = "<group>"; };
+		60FE3F0725C5635D00EF6EFA /* peakingFilter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = peakingFilter.hpp; sourceTree = "<group>"; };
 		E42962AC2163EDD300A6A9E2 /* ofCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofCamera.cpp; path = ../../../libs/openFrameworks/3d/ofCamera.cpp; sourceTree = SOURCE_ROOT; };
 		E42962AD2163EDD300A6A9E2 /* ofMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofMesh.h; path = ../../../libs/openFrameworks/3d/ofMesh.h; sourceTree = SOURCE_ROOT; };
 		E42962AE2163EDD300A6A9E2 /* ofNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofNode.h; path = ../../../libs/openFrameworks/3d/ofNode.h; sourceTree = SOURCE_ROOT; };
@@ -226,6 +229,8 @@
 			children = (
 				60FE3F0325C5535C00EF6EFA /* equalizer.cpp */,
 				60FE3F0425C5535C00EF6EFA /* equalizer.hpp */,
+				60FE3F0625C5635D00EF6EFA /* peakingFilter.cpp */,
+				60FE3F0725C5635D00EF6EFA /* peakingFilter.hpp */,
 			);
 			path = soundEffects;
 			sourceTree = "<group>";
@@ -651,6 +656,7 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				60FE3F0525C5535C00EF6EFA /* equalizer.cpp in Sources */,
+				60FE3F0825C5635D00EF6EFA /* peakingFilter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

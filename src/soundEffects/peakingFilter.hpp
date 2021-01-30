@@ -1,0 +1,30 @@
+//
+//  peakingFilter.hpp
+//  ofxGraphicEqualizer
+//
+//  Created by keita miyano on 2021/01/30.
+//
+
+#pragma once
+
+#include <ofMain.h>
+
+class peakingFilter {
+    public:
+        // フィルタ計算用のバッファ変数。
+        float in1;
+        float in2;
+        float out1;
+        float out2;
+        
+        float a0;
+        float a1;
+        float a2;
+        float b0;
+        float b1;
+        float b2;
+        
+        peakingFilter(int sampleRate, int frequency, float bw, float gain);
+        ~peakingFilter();
+        float effect(float sample);
+};

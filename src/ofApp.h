@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "soundEffects/equalizer.hpp"
+#include "soundEffects/peakingFilter.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -18,6 +19,11 @@ class ofApp : public ofBaseApp{
         int bufferSize;
         int sampleRate;
         vector<float> inputBuffer;
+    
+        equalizer* myEqualizer;
+        peakingFilter* myPeakingFilter;
+        
+        bool peakingFilterOn=false;
 
 		void keyPressed(int key);
 		void keyReleased(int key);
