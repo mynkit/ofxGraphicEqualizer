@@ -1,0 +1,6 @@
+/bin/ofxGraphicEqualizer.app/
+bin/ofxGraphicEqualizerDebug.app/
+/obj/
+/.vscode/
+*.DS_Store
+*.csv
