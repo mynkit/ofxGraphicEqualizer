@@ -75,22 +75,19 @@ void equalizer::drawEqualizer(int x, int y) {
     }
     if (equalizerOn) {
         // イコライザーがONのときの表示
-//        gain100 = 10.;
-//        gain200 = 5.;
-//        gain400 = 0.;
-//        gain800 = -5.;
-//        gain1600 = 2.5;
-//        gain3200 = 7.5;
-//        gain6400 = 12.;
         ofSetColor(200, 10, 10, 200);
-        ofDrawRectangle(x + 60, y + 115 ,9, 9);
-        ofDrawRectangle(x + 100, y + 127, 9, 9);
-        ofDrawRectangle(x + 140, y + 145, 9, 9);
-        ofDrawRectangle(x + 180, y + 157, 9, 9);
-        ofDrawRectangle(x + 220, y + 127, 9, 9);
-        ofDrawRectangle(x + 260, y + 118, 9, 9);
-        ofDrawRectangle(x + 300, y + 105, 9, 9);
+        ofDrawRectangle(x + 60, getGainY(y, gain100) ,9, 9);
+        ofDrawRectangle(x + 100, getGainY(y, gain200), 9, 9);
+        ofDrawRectangle(x + 140, getGainY(y, gain400), 9, 9);
+        ofDrawRectangle(x + 180, getGainY(y, gain800), 9, 9);
+        ofDrawRectangle(x + 220, getGainY(y, gain1600), 9, 9);
+        ofDrawRectangle(x + 260, getGainY(y, gain3200), 9, 9);
+        ofDrawRectangle(x + 300, getGainY(y, gain6400), 9, 9);
     }
+}
+
+float equalizer::getGainY(int y, float gain) {
+    return y + 145 - 40. * gain / 12.;
 }
 
 void equalizer::equalizerSwitch(int x, int y, int button) {

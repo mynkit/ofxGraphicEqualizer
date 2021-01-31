@@ -33,5 +33,6 @@ class equalizer {
         ~equalizer();
         float effect(float sample);
         void drawEqualizer(int x, int y);
+        float getGainY(int y, float gain);
         void equalizerSwitch(int x, int y, int button);
 };
