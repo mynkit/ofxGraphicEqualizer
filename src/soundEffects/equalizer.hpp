@@ -11,6 +11,7 @@
 
 class equalizer {
     public:
+        bool equalizerOn;
         float gain100;
         float gain200;
         float gain400;
@@ -28,4 +29,6 @@ class equalizer {
         equalizer(int sampleRate);
         ~equalizer();
         float effect(float sample);
+        void drawEqualizer(int x, int y);
+        void equalizerSwitch(int x, int y, int button);
 };

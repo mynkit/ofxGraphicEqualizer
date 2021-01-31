@@ -20,8 +20,6 @@ class ofApp : public ofBaseApp{
         vector<float> inputBuffer;
     
         equalizer* myEqualizer;
-        
-        bool equalizerOn=false;
 
 		void keyPressed(int key);
 		void keyReleased(int key);
