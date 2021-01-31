@@ -66,42 +66,14 @@ void ofApp::draw(){
     ofDrawBitmapString("1600", 310, 190);
     ofDrawBitmapString("3200", 350, 190);
     ofDrawBitmapString("6400", 390, 190);
-    //
-    ofDrawLine(173, 210, 197, 210);
-    ofDrawLine(173, 230, 197, 230);
-    ofDrawLine(173, 250, 197, 250);
-    ofDrawLine(173, 270, 197, 270);
-    ofDrawLine(173, 290, 197, 290);
-    //
-    ofDrawLine(213, 210, 233, 210);
-    ofDrawLine(213, 230, 233, 230);
-    ofDrawLine(213, 250, 233, 250);
-    ofDrawLine(213, 270, 233, 270);
-    ofDrawLine(213, 290, 233, 290);
-    //
-    ofDrawLine(253, 210, 273, 210);
-    ofDrawLine(253, 230, 273, 230);
-    ofDrawLine(253, 250, 273, 250);
-    ofDrawLine(253, 270, 273, 270);
-    ofDrawLine(253, 290, 273, 290);
-    //
-    ofDrawLine(293, 210, 313, 210);
-    ofDrawLine(293, 230, 313, 230);
-    ofDrawLine(293, 250, 313, 250);
-    ofDrawLine(293, 270, 313, 270);
-    ofDrawLine(293, 290, 313, 290);
-    //
-    ofDrawLine(333, 210, 353, 210);
-    ofDrawLine(333, 230, 353, 230);
-    ofDrawLine(333, 250, 353, 250);
-    ofDrawLine(333, 270, 353, 270);
-    ofDrawLine(333, 290, 353, 290);
-    //
-    ofDrawLine(373, 210, 393, 210);
-    ofDrawLine(373, 230, 393, 230);
-    ofDrawLine(373, 250, 393, 250);
-    ofDrawLine(373, 270, 393, 270);
-    ofDrawLine(373, 290, 393, 290);
+    // gainを見やすくするための補助線
+    int x = 173;
+    int y = 210;
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 6; j++) {
+            ofDrawLine(x + j * 40, y + i * 20, x + 20 + j * 40, y + i * 20);
+        }
+    }
     if (equalizerOn) {
         // イコライザーがONのときの表示
 //        gain100 = 10.;
@@ -149,14 +121,7 @@ void ofApp::audioOut(ofSoundBuffer &buffer){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    switch (key) {
-    case 'p':
-        if (equalizerOn) {
-            equalizerOn = false;
-        } else {
-            equalizerOn = true;
-        }
-    }
+
 }
 
 //--------------------------------------------------------------
@@ -176,7 +141,13 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    if ( (button == 0) && (pow(x - 280, 2) + pow(y - 345, 2) <= pow(16, 2)) ) {
+        if (equalizerOn) {
+            equalizerOn = false;
+        } else {
+            equalizerOn = true;
+        }
+    }
 }
 
 //--------------------------------------------------------------
