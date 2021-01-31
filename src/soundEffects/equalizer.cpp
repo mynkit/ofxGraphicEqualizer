@@ -39,41 +39,38 @@ float equalizer::effect(float sample) {
 void equalizer::drawEqualizer(int x, int y) {
     // イコライザー
     ofSetColor(180, 180, 200, 200);
-    ofDrawRectangle(100,100,360,310);
+    ofDrawRectangle(x, y, 360, 310);
     // ON/OFFスイッチ
+    onoffX = x + 180;
+    onoffY = y + 245;
+    onoffRadius = 16;
     ofSetColor(50, 50, 50, 200);
-    ofDrawCircle(280, 345, 16);
+    ofDrawCircle(onoffX, onoffY, onoffRadius);
     ofSetColor(210, 210, 210, 200);
-    ofDrawCircle(280, 345, 15);
+    ofDrawCircle(x + 180, y + 245, 15);
     // イコライザーのつまみ部分
     ofSetColor(80, 80, 80, 150);
-    ofDrawRectangle(160,200,10,100);
-    ofDrawRectangle(200,200,10,100);
-    ofDrawRectangle(240,200,10,100);
-    ofDrawRectangle(280,200,10,100);
-    ofDrawRectangle(320,200,10,100);
-    ofDrawRectangle(360,200,10,100);
-    ofDrawRectangle(400,200,10,100);
+    for (int i = 0; i < 7; i++) {
+        ofDrawRectangle(x + 60 + i * 40, y + 100, 10, 100);
+    }
     ofSetColor(50, 50, 50, 255);
-    ofDrawBitmapString("Equalizer", 245, 150);
-    ofDrawBitmapString("+12", 120, 215);
-    ofDrawBitmapString("+6", 120, 235);
-    ofDrawBitmapString(" 0", 120, 255);
-    ofDrawBitmapString("-6", 120, 275);
-    ofDrawBitmapString("-12", 120, 295);
-    ofDrawBitmapString("100", 154, 190);
-    ofDrawBitmapString("200", 194, 190);
-    ofDrawBitmapString("400", 234, 190);
-    ofDrawBitmapString("800", 274, 190);
-    ofDrawBitmapString("1600", 310, 190);
-    ofDrawBitmapString("3200", 350, 190);
-    ofDrawBitmapString("6400", 390, 190);
+    ofDrawBitmapString("Equalizer", x + 145, y + 50);
+    ofDrawBitmapString("+12", x + 20, y + 115);
+    ofDrawBitmapString("+6", x + 20, y + 135);
+    ofDrawBitmapString(" 0", x + 20, y + 155);
+    ofDrawBitmapString("-6", x + 20, y + 175);
+    ofDrawBitmapString("-12", x + 20, y + 195);
+    ofDrawBitmapString("100", x + 54, y + 90);
+    ofDrawBitmapString("200", x + 94, y + 90);
+    ofDrawBitmapString("400", x + 134, y + 90);
+    ofDrawBitmapString("800", x + 174, y + 90);
+    ofDrawBitmapString("1600", x + 210, y + 90);
+    ofDrawBitmapString("3200", x + 250, y + 90);
+    ofDrawBitmapString("6400", x + 290, y + 90);
     // gainを見やすくするための補助線
-    int x_start = 173;
-    int y_start = 210;
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 6; j++) {
-            ofDrawLine(x_start + j * 40, y_start + i * 20, x_start + 20 + j * 40, y_start + i * 20);
+            ofDrawLine(x + 73 + j * 40, y + 110 + i * 20, x + 93 + j * 40, y + 110 + i * 20);
         }
     }
     if (equalizerOn) {
@@ -86,18 +83,18 @@ void equalizer::drawEqualizer(int x, int y) {
 //        gain3200 = 7.5;
 //        gain6400 = 12.;
         ofSetColor(200, 10, 10, 200);
-        ofDrawRectangle(160,215,9,9);
-        ofDrawRectangle(200,227,9,9);
-        ofDrawRectangle(240,245,9,9);
-        ofDrawRectangle(280,257,9,9);
-        ofDrawRectangle(320,227,9,9);
-        ofDrawRectangle(360,218,9,9);
-        ofDrawRectangle(400,205,9,9);
+        ofDrawRectangle(x + 60, y + 115 ,9, 9);
+        ofDrawRectangle(x + 100, y + 127, 9, 9);
+        ofDrawRectangle(x + 140, y + 145, 9, 9);
+        ofDrawRectangle(x + 180, y + 157, 9, 9);
+        ofDrawRectangle(x + 220, y + 127, 9, 9);
+        ofDrawRectangle(x + 260, y + 118, 9, 9);
+        ofDrawRectangle(x + 300, y + 105, 9, 9);
     }
 }
 
 void equalizer::equalizerSwitch(int x, int y, int button) {
-    if ( (button == 0) && (pow(x - 280, 2) + pow(y - 345, 2) <= pow(16, 2)) ) {
+    if ( (button == 0) && (pow(x - onoffX, 2) + pow(y - onoffY, 2) <= pow(onoffRadius, 2)) ) {
         if (equalizerOn) {
             equalizerOn = false;
         } else {

@@ -12,6 +12,9 @@
 class equalizer {
     public:
         bool equalizerOn;
+        int onoffX;
+        int onoffY;
+        int onoffRadius;
         float gain100;
         float gain200;
         float gain400;
