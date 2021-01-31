@@ -8,13 +8,13 @@
 #include "soundEffects/equalizer.hpp"
 
 equalizer::equalizer(int sampleRate) {
-    gain100 = 10.;
-    gain200 = 5.;
-    gain400 = 0.;
-    gain800 = -5.;
-    gain1600 = 2.5;
-    gain3200 = 7.5;
-    gain6400 = 12.;
+    float gain100 = 10.;
+    float gain200 = 5.;
+    float gain400 = 0.;
+    float gain800 = -5.;
+    float gain1600 = 2.5;
+    float gain3200 = 7.5;
+    float gain6400 = 12.;
     myPeakingFilter100 = new peakingFilter(sampleRate, 100, 0.3, gain100);
     myPeakingFilter200 = new peakingFilter(sampleRate, 200, 0.3, gain200);
     myPeakingFilter400 = new peakingFilter(sampleRate, 400, 0.3, gain400);
@@ -37,6 +37,8 @@ float equalizer::effect(float sample) {
 }
 
 void equalizer::drawEqualizer(int x, int y) {
+    upperLeftX = x;
+    upperLeftY = y;
     // イコライザー
     ofSetColor(180, 180, 200, 200);
     ofDrawRectangle(x, y, 360, 310);
@@ -76,26 +78,104 @@ void equalizer::drawEqualizer(int x, int y) {
     if (equalizerOn) {
         // イコライザーがONのときの表示
         ofSetColor(200, 10, 10, 200);
-        ofDrawRectangle(x + 60, getGainY(y, gain100) ,9, 9);
-        ofDrawRectangle(x + 100, getGainY(y, gain200), 9, 9);
-        ofDrawRectangle(x + 140, getGainY(y, gain400), 9, 9);
-        ofDrawRectangle(x + 180, getGainY(y, gain800), 9, 9);
-        ofDrawRectangle(x + 220, getGainY(y, gain1600), 9, 9);
-        ofDrawRectangle(x + 260, getGainY(y, gain3200), 9, 9);
-        ofDrawRectangle(x + 300, getGainY(y, gain6400), 9, 9);
+        ofDrawRectangle(x + 60, getGainY(myPeakingFilter100->gain) ,9, 9);
+        ofDrawRectangle(x + 100, getGainY(myPeakingFilter200->gain), 9, 9);
+        ofDrawRectangle(x + 140, getGainY(myPeakingFilter400->gain), 9, 9);
+        ofDrawRectangle(x + 180, getGainY(myPeakingFilter800->gain), 9, 9);
+        ofDrawRectangle(x + 220, getGainY(myPeakingFilter1600->gain), 9, 9);
+        ofDrawRectangle(x + 260, getGainY(myPeakingFilter3200->gain), 9, 9);
+        ofDrawRectangle(x + 300, getGainY(myPeakingFilter6400->gain), 9, 9);
     }
 }
 
-float equalizer::getGainY(int y, float gain) {
-    return y + 145 - 40. * gain / 12.;
+float equalizer::getGainY(float gain) {
+    return upperLeftY + 145 - 40. * gain / 12.;
+}
+
+float equalizer::getGain(int gainY) {
+    return ((upperLeftY + 145) - gainY) * 12. / 40.;
 }
 
 void equalizer::equalizerSwitch(int x, int y, int button) {
-    if ( (button == 0) && (pow(x - onoffX, 2) + pow(y - onoffY, 2) <= pow(onoffRadius, 2)) ) {
+    if (button == 0) {
+        if (pow(x - onoffX, 2) + pow(y - onoffY, 2) <= pow(onoffRadius, 2)) {
+            if (equalizerOn) {
+                equalizerOn = false;
+            } else {
+                equalizerOn = true;
+            }
+        }
         if (equalizerOn) {
-            equalizerOn = false;
-        } else {
-            equalizerOn = true;
+            if (x >= (upperLeftX + 60) && x <= (upperLeftX + 70)) {
+                if (y >= (upperLeftY + 185)) {
+                    myPeakingFilter100->setGain(-12.);
+                }
+                else if (y <= (upperLeftY + 105)) {
+                    myPeakingFilter100->setGain(12.);
+                } else {
+                    myPeakingFilter100->setGain(getGain(y));
+                }
+            }
+            if (x >= (upperLeftX + 100) && x <= (upperLeftX + 110)) {
+                if (y >= (upperLeftY + 185)) {
+                    myPeakingFilter200->setGain(-12.);
+                }
+                else if (y <= (upperLeftY + 105)) {
+                    myPeakingFilter200->setGain(12.);
+                } else {
+                    myPeakingFilter200->setGain(getGain(y));
+                }
+            }
+            if (x >= (upperLeftX + 140) && x <= (upperLeftX + 150)) {
+                if (y >= (upperLeftY + 185)) {
+                    myPeakingFilter400->setGain(-12.);
+                }
+                else if (y <= (upperLeftY + 105)) {
+                    myPeakingFilter400->setGain(12.);
+                } else {
+                    myPeakingFilter400->setGain(getGain(y));
+                }
+            }
+            if (x >= (upperLeftX + 180) && x <= (upperLeftX + 190)) {
+                if (y >= (upperLeftY + 185)) {
+                    myPeakingFilter800->setGain(-12.);
+                }
+                else if (y <= (upperLeftY + 105)) {
+                    myPeakingFilter800->setGain(12.);
+                } else {
+                    myPeakingFilter800->setGain(getGain(y));
+                }
+            }
+            if (x >= (upperLeftX + 220) && x <= (upperLeftX + 230)) {
+                if (y >= (upperLeftY + 185)) {
+                    myPeakingFilter1600->setGain(-12.);
+                }
+                else if (y <= (upperLeftY + 105)) {
+                    myPeakingFilter1600->setGain(12.);
+                } else {
+                    myPeakingFilter1600->setGain(getGain(y));
+                }
+            }
+            if (x >= (upperLeftX + 260) && x <= (upperLeftX + 270)) {
+                if (y >= (upperLeftY + 185)) {
+                    myPeakingFilter3200->setGain(-12.);
+                }
+                else if (y <= (upperLeftY + 105)) {
+                    myPeakingFilter3200->setGain(12.);
+                } else {
+                    myPeakingFilter3200->setGain(getGain(y));
+                }
+            }
+            if (x >= (upperLeftX + 300) && x <= (upperLeftX + 310)) {
+                if (y >= (upperLeftY + 185)) {
+                    myPeakingFilter6400->setGain(-12.);
+                }
+                else if (y <= (upperLeftY + 105)) {
+                    myPeakingFilter6400->setGain(12.);
+                } else {
+                    myPeakingFilter6400->setGain(getGain(y));
+                }
+            }
         }
     }
 }

@@ -12,8 +12,9 @@ peakingFilter::peakingFilter(int sampleRate, int frequency, float bw, float gain
     // bw:  ピークの幅
     // gain: 増幅(dB)
 
-    float omega = 2.0f * M_PI * frequency / sampleRate;
-    float alpha = sin(omega) * sinh(log(2.0f) / 2.0 * bw * omega / sin(omega));
+    omega = 2.0f * M_PI * frequency / sampleRate;
+    alpha = sin(omega) * sinh(log(2.0f) / 2.0 * bw * omega / sin(omega));
+    this->gain = gain;
     float A     = pow(10.0f, (gain / 40.0f) );
     // フィルタ計算用のバッファ変数。
     in1  = 0.0f;
@@ -37,4 +38,15 @@ float peakingFilter::effect(float sample) {
     out2 = out1;      // 2つ前の出力信号を更新
     out1 = nextSample; // 1つ前の出力信号を更新
     return nextSample;
+}
+
+void peakingFilter::setGain(float gain) {
+    this->gain = gain;
+    float A     = pow(10.0f, (gain / 40.0f) );
+    a0 =  1.0f + alpha / A;
+    a1 = -2.0f * cos(omega);
+    a2 =  1.0f - alpha / A;
+    b0 =  1.0f + alpha * A;
+    b1 =  -2.0f * cos(omega);
+    b2 =  1.0f - alpha * A;
 }

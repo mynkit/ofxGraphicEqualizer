@@ -12,16 +12,11 @@
 class equalizer {
     public:
         bool equalizerOn;
+        int upperLeftX;
+        int upperLeftY;
         int onoffX;
         int onoffY;
         int onoffRadius;
-        float gain100;
-        float gain200;
-        float gain400;
-        float gain800;
-        float gain1600;
-        float gain3200;
-        float gain6400;
         peakingFilter* myPeakingFilter100;
         peakingFilter* myPeakingFilter200;
         peakingFilter* myPeakingFilter400;
@@ -33,6 +28,7 @@ class equalizer {
         ~equalizer();
         float effect(float sample);
         void drawEqualizer(int x, int y);
-        float getGainY(int y, float gain);
+        float getGainY(float gain);
+        float getGain(int gainY);
         void equalizerSwitch(int x, int y, int button);
 };

@@ -11,6 +11,8 @@
 
 class peakingFilter {
     public:
+        float omega;
+        float alpha;
         // フィルタ計算用のバッファ変数。
         float in1;
         float in2;
@@ -23,8 +25,11 @@ class peakingFilter {
         float b0;
         float b1;
         float b2;
+    
+        float gain;
         
         peakingFilter(int sampleRate, int frequency, float bw, float gain);
         ~peakingFilter();
         float effect(float sample);
+        void setGain(float gain);
 };
