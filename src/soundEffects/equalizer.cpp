@@ -11,17 +11,17 @@ equalizer::equalizer(int sampleRate) {
     float gain100 = 10.;
     float gain200 = 5.;
     float gain400 = 0.;
-    float gain800 = -5.;
-    float gain1600 = 2.5;
-    float gain3200 = 7.5;
-    float gain6400 = 12.;
-    myPeakingFilter100 = new peakingFilter(sampleRate, 100, 0.3, gain100);
-    myPeakingFilter200 = new peakingFilter(sampleRate, 200, 0.3, gain200);
-    myPeakingFilter400 = new peakingFilter(sampleRate, 400, 0.3, gain400);
-    myPeakingFilter800 = new peakingFilter(sampleRate, 800, 0.3, gain800);
-    myPeakingFilter1600 = new peakingFilter(sampleRate, 1600, 0.3, gain1600);
-    myPeakingFilter3200 = new peakingFilter(sampleRate, 3200, 0.3, gain3200);
-    myPeakingFilter6400 = new peakingFilter(sampleRate, 6400, 0.3, gain6400);
+    float gain800 = -12.;
+    float gain1600 = -6;
+    float gain3200 = -4;
+    float gain6400 = 1;
+    myPeakingFilter100 = new peakingFilter(sampleRate, 100, 2.9, gain100);
+    myPeakingFilter200 = new peakingFilter(sampleRate, 200, 2.9, gain200);
+    myPeakingFilter400 = new peakingFilter(sampleRate, 400, 2.9, gain400);
+    myPeakingFilter800 = new peakingFilter(sampleRate, 800, 2.9, gain800);
+    myPeakingFilter1600 = new peakingFilter(sampleRate, 1600, 2.9, gain1600);
+    myPeakingFilter3200 = new peakingFilter(sampleRate, 3200, 2.9, gain3200);
+    myPeakingFilter6400 = new peakingFilter(sampleRate, 6400, 2.9, gain6400);
     equalizerOn = false;
 }
 

@@ -28,7 +28,7 @@ class peakingFilter {
     
         float gain;
         
-        peakingFilter(int sampleRate, int frequency, float bw, float gain);
+        peakingFilter(int sampleRate, int frequency, float Q, float gain);
         ~peakingFilter();
         float effect(float sample);
         void setGain(float gain);

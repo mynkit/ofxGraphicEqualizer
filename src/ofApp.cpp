@@ -22,7 +22,8 @@ void ofApp::setup(){
     
     // img
     backgroundImg.load("equalizer_code.png");
-    
+    // textファイル保存
+    // myTextFile.open("sound_out.txt",ofFile::WriteOnly);
 }
 
 //--------------------------------------------------------------
@@ -59,6 +60,7 @@ void ofApp::audioOut(ofSoundBuffer &buffer){
         }
         buffer[i*channels+0] = currentSample;
         buffer[i*channels+1] = currentSample;
+        //myTextFile << currentSample << ",";
     }
 }
 

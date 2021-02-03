@@ -35,5 +35,5 @@ class ofApp : public ofBaseApp{
     
     private:
         ofImage backgroundImg;
-		
+        ofFile myTextFile;
 };

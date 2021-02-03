@@ -7,12 +7,13 @@
 
 #include "soundEffects/peakingFilter.hpp"
 
-peakingFilter::peakingFilter(int sampleRate, int frequency, float bw, float gain) {
+peakingFilter::peakingFilter(int sampleRate, int frequency, float Q, float gain) {
     // frequency: 中心周波数(Hz)
     // bw:  ピークの幅
     // gain: 増幅(dB)
 
     omega = 2.0f * M_PI * frequency / sampleRate;
+    float bw = frequency / (Q * 1000);
     alpha = sin(omega) * sinh(log(2.0f) / 2.0 * bw * omega / sin(omega));
     this->gain = gain;
     float A     = pow(10.0f, (gain / 40.0f) );
